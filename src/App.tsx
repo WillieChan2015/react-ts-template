@@ -1,5 +1,8 @@
 import React from 'react';
 import { BrowserRouter, Route, Link, Switch } from 'react-router-dom';
+
+import Login from 'views/Login/Login';
+
 import './App.css';
 
 const Home = () => <div>Home Page</div>;
@@ -20,7 +23,7 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        <p>hello tsx</p>
+        {/* <p>hello tsx</p>
         <ul>
           <li>
             <Link to="/">home</Link>
@@ -34,8 +37,11 @@ function App() {
           <li>
             <Link to="/404">Notfound</Link>
           </li>
-        </ul>
+        </ul> */}
         <Switch>
+          <Route path="/login">
+            <Login />
+          </Route>
           <Route exact path="/" component={Home} /> {/* exact: 精确匹配 */}
           <Route path="/about" children={About} />
           <Route path="/contact" children={Contact} />

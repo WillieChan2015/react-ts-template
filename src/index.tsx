@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App';
 import { AppContainer } from 'react-hot-loader';
+import './index.css';
+import '@/assets/scss/reset.scss';
 
 const renderMethod = (module as any).hot ? ReactDOM.render : ReactDOM.hydrate;
 const render = (Component: any) => (
