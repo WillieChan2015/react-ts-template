@@ -1,16 +1,19 @@
 import React from 'react';
 import { Form, Input, Button } from 'antd';
+import { useHistory } from 'react-router-dom';
 import './Login.scss';
 
 const FormItem = Form.Item;
 
 const Login = () => {
   const [ form ] = Form.useForm();
+  const history = useHistory();
 
   const onSubmit = () => {
     form.validateFields()
       .then(values => {
         console.log(values);
+        history.push('/');
       })
       .catch(() => {});
   }
@@ -29,6 +32,7 @@ const Login = () => {
           <Form 
             className="t_login_form"
             form={form}
+            onFinish={onSubmit}
           >
             <FormItem
               // label="用户名"

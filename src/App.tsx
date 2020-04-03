@@ -1,7 +1,8 @@
 import React from 'react';
-import { BrowserRouter, Route, Link, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Link, Switch, Redirect } from 'react-router-dom';
 
 import Login from 'views/Login/Login';
+import Layout from '@/Layout';
 
 import './App.css';
 
@@ -17,34 +18,37 @@ const Contact = () => (
   </div>
 );
 
-const Notfound = () => <h1>Not found</h1>
+const Notfound = () => <h1>Not found, <Link to="/">to home</Link></h1>
 
 function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        {/* <p>hello tsx</p>
-        <ul>
-          <li>
-            <Link to="/">home</Link>
-          </li>
-          <li>
-            <Link to="/about">about</Link>
-          </li>
-          <li>
-            <Link to="/contact">contact</Link>
-          </li>
-          <li>
-            <Link to="/404">Notfound</Link>
-          </li>
-        </ul> */}
         <Switch>
           <Route path="/login">
             <Login />
           </Route>
-          <Route exact path="/" component={Home} /> {/* exact: 精确匹配 */}
-          <Route path="/about" children={About} />
-          <Route path="/contact" children={Contact} />
+          {/* <Route exact path="/" /> */}
+          <Route path="/404" children={Notfound} />
+          <Route path="/"> {/* exact: 精确匹配 */}
+            <Layout>
+              <Switch>
+                <Route exact path="/">
+                  <Home />
+                </Route>
+                <Route path="/index">
+                  <Home />
+                </Route>
+                <Route path="/about">
+                  <About />
+                </Route>
+                <Route path="/contact">
+                  <Contact />
+                </Route>
+                <Redirect from="*" to="/404" />
+              </Switch>
+            </Layout>
+          </Route>
           <Route children={Notfound} />
         </Switch>
       </div>
