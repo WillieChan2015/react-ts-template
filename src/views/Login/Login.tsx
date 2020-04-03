@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Form, Input, Button } from 'antd';
 import { useHistory } from 'react-router-dom';
+import { Context } from '@/Store';
 import './Login.scss';
 
 const FormItem = Form.Item;
 
 const Login = () => {
+  const { dispatch } = useContext(Context);
   const [ form ] = Form.useForm();
   const history = useHistory();
 
@@ -13,6 +15,10 @@ const Login = () => {
     form.validateFields()
       .then(values => {
         console.log(values);
+        dispatch({
+          type: 'CHANGE_USERNAME',
+          payload: values.username
+        });
         history.push('/');
       })
       .catch(() => {});

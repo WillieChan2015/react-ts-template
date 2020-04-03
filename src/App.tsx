@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Route, Link, Switch, Redirect } from 'react-router-dom';
+import { Provider } from './Store';
 
 import Login from 'views/Login/Login';
 import Layout from '@/Layout';
@@ -56,4 +57,10 @@ function App() {
   );
 }
 
-export default App;
+const AppWithProvider = () => (
+  <Provider>
+    <App />
+  </Provider>
+)
+
+export default AppWithProvider;

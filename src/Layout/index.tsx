@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Layout as ALayout, Menu, } from 'antd';
+import { Context } from '@/Store';
 
 import './Layout.scss';
 
@@ -11,6 +12,7 @@ interface IProps {
 }
 
 const Layout: React.FC<IProps> = (props) => {
+  const { state } = useContext(Context);
   const location = useLocation();
   const pathname = location.pathname.split('/').slice(0, 2).join('/');
 
@@ -37,6 +39,7 @@ const Layout: React.FC<IProps> = (props) => {
         </Menu>
       </Header>
       <Content>
+        <p>hi, {state.username}</p>
         { props.children }
       </Content>
     </ALayout>
